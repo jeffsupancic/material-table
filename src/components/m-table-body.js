@@ -74,6 +74,15 @@ class MTableBody extends React.Component {
     }
   }
 
+  getMode = (data) => {
+    const { bulkEditOpen, isEditMultipleRowsFlow } = this.props;
+    return bulkEditOpen
+      ? "bulk"
+      : isEditMultipleRowsFlow
+      ? "multiple-edit"
+      : data.tableData.editing;
+  };
+
   renderUngroupedRows(renderData) {
     return renderData.map((data, index) => {
       if (data.tableData.editing || this.props.bulkEditOpen) {
@@ -93,7 +102,7 @@ class MTableBody extends React.Component {
                 .dateTimePickerLocalization,
             }}
             key={"row-" + data.tableData.id}
-            mode={this.props.bulkEditOpen ? "bulk" : data.tableData.editing}
+            mode={this.getMode(data)}
             options={this.props.options}
             isTreeData={this.props.isTreeData}
             detailPanel={this.props.detailPanel}
@@ -101,6 +110,9 @@ class MTableBody extends React.Component {
             onEditingApproved={this.props.onEditingApproved}
             getFieldValue={this.props.getFieldValue}
             onBulkEditRowChanged={this.props.onBulkEditRowChanged}
+            onMultipleEditRowsChanged={this.props.onMultipleEditRowsChanged}
+            isEditMultipleRowsFlow={this.props.isEditMultipleRowsFlow}
+            multipleRowsEditChanges={this.props.multipleRowsEditChanges}
             scrollWidth={this.props.scrollWidth}
           />
         );
@@ -344,6 +356,9 @@ MTableBody.propTypes = {
   onCellEditFinished: PropTypes.func,
   bulkEditOpen: PropTypes.bool,
   onBulkEditRowChanged: PropTypes.func,
+  onMultipleEditRowsChanged: PropTypes.func,
+  isEditMultipleRowsFlow: PropTypes.bool,
+  multipleRowsEditChanges: PropTypes.object,
 };
 
 export default MTableBody;

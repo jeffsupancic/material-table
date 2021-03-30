@@ -254,7 +254,7 @@ export class MTableHeader extends React.Component {
         className={this.props.classes.header}
         style={{ ...this.props.headerStyle, width: selectionWidth }}
       >
-        {this.props.showSelectAllCheckbox && (
+        {this.props.showSelectAllCheckbox && !this.props.isEditMultipleRowsFlow && (
           <Checkbox
             indeterminate={
               this.props.selectedCount > 0 &&
@@ -387,6 +387,7 @@ MTableHeader.propTypes = {
   draggable: PropTypes.bool,
   thirdSortClick: PropTypes.bool,
   tooltip: PropTypes.string,
+  isEditMultipleRowsFlow: PropTypes.bool
 };
 
 export const styles = (theme) => ({

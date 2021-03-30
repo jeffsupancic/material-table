@@ -473,6 +473,11 @@ class App extends Component {
     ],
   };
 
+  getCopyOfSelectedRows = () =>
+    JSON.parse(
+      JSON.stringify(this.state.data.filter((row) => row.tableData.checked))
+    );
+
   render() {
     return (
       <>
@@ -509,7 +514,7 @@ class App extends Component {
                     headerSelectionProps: {
                       color: "primary",
                     },
-                    selection: false,
+                    selection: true,
                     selectionProps: (rowData) => {
                       rowData.tableData.disabled = rowData.name === "A1";
 
@@ -520,49 +525,71 @@ class App extends Component {
                     },
                   }}
                   // editable={{
-                  //   onBulkUpdate: (changedRows) =>
+                  // onBulkUpdate: (changedRows) =>
+                  //   new Promise((resolve, reject) => {
+                  //     console.log(changedRows);
+                  //     setTimeout(() => {
+                  //       {
+                  //         /* const data = this.state.data;
+                  //         data.push(newData);
+                  //         this.setState({ data }, () => resolve()); */
+                  //       }
+                  //       resolve();
+                  //     }, 1000);
+                  //   }),
+                  // onRowAdd: (newData) =>
+                  //   new Promise((resolve, reject) => {
+                  //     setTimeout(() => {
+                  //       {
+                  //         /* const data = this.state.data;
+                  //         data.push(newData);
+                  //         this.setState({ data }, () => resolve()); */
+                  //       }
+                  //       resolve();
+                  //     }, 1000);
+                  //   }),
+                  // onRowUpdate: (newData, oldData) =>
+                  //   new Promise((resolve, reject) => {
+                  //     setTimeout(() => {
+                  //       {
+                  //         /* const data = this.state.data;
+                  //         const index = data.indexOf(oldData);
+                  //         data[index] = newData;
+                  //         this.setState({ data }, () => resolve()); */
+                  //       }
+                  //       resolve();
+                  //     }, 1000);
+                  //   }),
+                  // onRowDelete: (oldData) =>
+                  //   new Promise((resolve, reject) => {
+                  //     setTimeout(() => {
+                  //       {
+                  //         /* let data = this.state.data;
+                  //         const index = data.indexOf(oldData);
+                  //         data.splice(index, 1);
+                  //         this.setState({ data }, () => resolve()); */
+                  //       }
+                  //       resolve();
+                  //     }, 1000);
+                  //   }),
+                  //   onMultipleRowsUpdate: (multipleRowsEditChanges) =>
                   //     new Promise((resolve, reject) => {
-                  //       console.log(changedRows);
                   //       setTimeout(() => {
                   //         {
-                  //           /* const data = this.state.data;
-                  //           data.push(newData);
-                  //           this.setState({ data }, () => resolve()); */
-                  //         }
-                  //         resolve();
-                  //       }, 1000);
-                  //     }),
-                  //   onRowAdd: (newData) =>
-                  //     new Promise((resolve, reject) => {
-                  //       setTimeout(() => {
-                  //         {
-                  //           /* const data = this.state.data;
-                  //           data.push(newData);
-                  //           this.setState({ data }, () => resolve()); */
-                  //         }
-                  //         resolve();
-                  //       }, 1000);
-                  //     }),
-                  //   onRowUpdate: (newData, oldData) =>
-                  //     new Promise((resolve, reject) => {
-                  //       setTimeout(() => {
-                  //         {
-                  //           /* const data = this.state.data;
-                  //           const index = data.indexOf(oldData);
-                  //           data[index] = newData;
-                  //           this.setState({ data }, () => resolve()); */
-                  //         }
-                  //         resolve();
-                  //       }, 1000);
-                  //     }),
-                  //   onRowDelete: (oldData) =>
-                  //     new Promise((resolve, reject) => {
-                  //       setTimeout(() => {
-                  //         {
-                  //           /* let data = this.state.data;
-                  //           const index = data.indexOf(oldData);
-                  //           data.splice(index, 1);
-                  //           this.setState({ data }, () => resolve()); */
+                  //           const selectedRows = this.getCopyOfSelectedRows();
+                  //           const newData = this.state.data.map((_data) => {
+                  //             if (
+                  //               selectedRows.some((row) => row.id === _data.id)
+                  //             ) {
+                  //               Object.keys(multipleRowsEditChanges).forEach(
+                  //                 (key) => {
+                  //                   _data[key] = multipleRowsEditChanges[key];
+                  //                 }
+                  //               );
+                  //             }
+                  //             return _data;
+                  //           });
+                  //           this.setState({ data: newData }, () => resolve());
                   //         }
                   //         resolve();
                   //       }, 1000);
