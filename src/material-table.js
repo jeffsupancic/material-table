@@ -196,12 +196,12 @@ export default class MaterialTable extends React.Component {
             if (typeof action === "function")
               return {
                 action: action,
-                position: action.position ?? "toolbarOnSelect",
+                position: this.props.rowOnSelect ? "row" : "toolbarOnSelect",
               };
             else
               return {
                 ...action,
-                position: action.position ?? "toolbarOnSelect",
+                position: this.props.rowOnSelect ? "row" : "toolbarOnSelect",
               };
           else if (action.isFreeAction)
             if (typeof action === "function")
