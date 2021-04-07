@@ -293,6 +293,9 @@ export default class MaterialTable extends React.Component {
           position: "toolbar",
           hidden: this.dataManager.bulkEditOpen,
           onClick: () => {
+            if (calculatedProps.editable.onBulkEditOpen) {
+              calculatedProps.editable.onBulkEditOpen();
+            }
             this.dataManager.changeBulkEditOpen(true);
             this.setState(this.dataManager.getRenderState());
           },
@@ -302,7 +305,12 @@ export default class MaterialTable extends React.Component {
           tooltip: localization.bulkEditApprove,
           position: "toolbar",
           hidden: !this.dataManager.bulkEditOpen,
-          onClick: () => this.onEditingApproved("bulk"),
+          onClick: () => {
+            if (calculatedProps.editable.onBulkEditOpen) {
+              calculatedProps.editable.onBulkEditOpen();
+            }
+            this.onEditingApproved("bulk");
+          },
         });
         calculatedProps.actions.push({
           icon: calculatedProps.icons.Clear,
@@ -310,6 +318,9 @@ export default class MaterialTable extends React.Component {
           position: "toolbar",
           hidden: !this.dataManager.bulkEditOpen,
           onClick: () => {
+            if (calculatedProps.editable.onBulkEditOpen) {
+              calculatedProps.editable.onBulkEditOpen();
+            }
             this.dataManager.changeBulkEditOpen(false);
             this.dataManager.clearBulkEditChangedRows();
             this.setState(this.dataManager.getRenderState());
@@ -326,6 +337,9 @@ export default class MaterialTable extends React.Component {
           position: "toolbarOnSelect",
           hidden: !hasSelectedRows || this.dataManager.isEditMultipleRowsFlow,
           onClick: () => {
+            if (calculatedProps.editable.onBulkEditOpen) {
+              calculatedProps.editable.onBulkEditOpen();
+            }
             this.dataManager.changeMultipleRowsEditing("update");
             this.setState(this.dataManager.getRenderState());
           },
@@ -341,6 +355,9 @@ export default class MaterialTable extends React.Component {
               calculatedProps.editable
                 .onMultipleRowsUpdate(this.dataManager.multipleRowsEditChanges)
                 .then((result) => {
+                  if (calculatedProps.editable.onBulkEditOpen) {
+                    calculatedProps.editable.onBulkEditOpen();
+                  }
                   this.dataManager.changeMultipleRowsEditing();
                   this.setState({
                     ...this.dataManager.getRenderState(),
@@ -358,6 +375,9 @@ export default class MaterialTable extends React.Component {
           position: "toolbarOnSelect",
           hidden: !this.dataManager.isEditMultipleRowsFlow,
           onClick: () => {
+            if (calculatedProps.editable.onBulkEditOpen) {
+              calculatedProps.editable.onBulkEditOpen();
+            }
             this.dataManager.changeMultipleRowsEditing();
             this.dataManager.resetMultipleRowsChanges();
             this.setState(this.dataManager.getRenderState());
