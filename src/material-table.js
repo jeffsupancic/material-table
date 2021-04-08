@@ -357,7 +357,7 @@ export default class MaterialTable extends React.Component {
             // else it's NOT VALID, cancel everything
 
             this.setState({ isLoading: true }, () => {
-              let isPassingValidations = calculatedProps.editable.validateMultipleSelectRows(this.dataManager.multipleRowEditChanges);
+              let isPassingValidations = calculatedProps.editable.validateMultipleSelectRows(this.dataManager.multipleRowsEditChanges);
               console.log('isPassingValidations', isPassingValidations);
             });
 
