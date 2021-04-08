@@ -357,10 +357,17 @@ export default class MaterialTable extends React.Component {
             // else it's NOT VALID, cancel everything
 
             this.setState({ isLoading: true }, () => {
-              let isPassingValidations = calculatedProps.editable.validateMultipleSelectRows(this.dataManager.multipleRowsEditChanges);
-              console.log('isPassingValidations', isPassingValidations);
+              let isFailingValidations = calculatedProps.editable.validateMultipleSelectRows(this.dataManager.multipleRowsEditChanges);
+              console.log('isFailingValidations', isFailingValidations);
 
-              if (isPassingValidations) {
+              if (isFailingValidations) {
+                if (calculatedProps.editable.onBulkEditOpen) {
+                  calculatedProps.editable.onBulkEditOpen();
+                }
+                this.dataManager.changeMultipleRowsEditing();
+                this.dataManager.resetMultipleRowsChanges();
+                this.setState(this.dataManager.getRenderState());
+              } else {
                 calculatedProps.editable
                   .onMultipleRowsUpdate()
                   .then((result) => {
@@ -374,13 +381,6 @@ export default class MaterialTable extends React.Component {
                     });
                     this.dataManager.resetMultipleRowsChanges();
                   });
-              } else {
-                if (calculatedProps.editable.onBulkEditOpen) {
-                  calculatedProps.editable.onBulkEditOpen();
-                }
-                this.dataManager.changeMultipleRowsEditing();
-                this.dataManager.resetMultipleRowsChanges();
-                this.setState(this.dataManager.getRenderState());
               }
             });
 
