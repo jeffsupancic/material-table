@@ -351,21 +351,30 @@ export default class MaterialTable extends React.Component {
           position: "toolbarOnSelect",
           hidden: !this.dataManager.isEditMultipleRowsFlow,
           onClick: () => {
-            this.setState({ isLoading: true }, () => {
-              calculatedProps.editable
-                .onMultipleRowsUpdate(this.dataManager.multipleRowsEditChanges)
-                .then((result) => {
-                  if (calculatedProps.editable.onBulkEditOpen) {
-                    calculatedProps.editable.onBulkEditOpen();
-                  }
-                  this.dataManager.changeMultipleRowsEditing();
-                  this.setState({
-                    ...this.dataManager.getRenderState(),
-                    isLoading: false,
-                  });
-                  this.dataManager.resetMultipleRowsChanges();
-                });
-            });
+            // user clicks save
+            // run validations on (this.dataManager.multipleRowsEditChanges)
+            // if validation function returns true, then it's VALID
+            // else it's NOT VALID, cancel everything
+
+            let isPassingValidations = calculatedProps.editable.validateMultipleSelectRows(this.dataManager.multipleRowEditChanges);
+
+            console.log('isPassingValidations', isPassingValidations);
+
+            // this.setState({ isLoading: true }, () => {
+            //   calculatedProps.editable
+            //     .onMultipleRowsUpdate(this.dataManager.multipleRowsEditChanges)
+            //     .then((result) => {
+            //       if (calculatedProps.editable.onBulkEditOpen) {
+            //         calculatedProps.editable.onBulkEditOpen();
+            //       }
+            //       this.dataManager.changeMultipleRowsEditing();
+            //       this.setState({
+            //         ...this.dataManager.getRenderState(),
+            //         isLoading: false,
+            //       });
+            //       this.dataManager.resetMultipleRowsChanges();
+            //     });
+            // });
           },
         });
 
