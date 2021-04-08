@@ -341,7 +341,7 @@ export default class MaterialTable extends React.Component {
               calculatedProps.editable.onBulkEditOpen();
             }
             this.dataManager.changeMultipleRowsEditing("update");
-            this.setState(this.dataManager.getRenderState());
+            // this.setState(this.dataManager.getRenderState());
           },
         });
 
@@ -361,15 +361,13 @@ export default class MaterialTable extends React.Component {
             console.log('isFailingValidations', isFailingValidations);
 
             if (isFailingValidations) {
-              if (calculatedProps.editable.onBulkEditOpen) {
-                calculatedProps.editable.onBulkEditOpen();
-              }
+              console.log('FAILED VALIDATIONS');
+              // if (calculatedProps.editable.onBulkEditOpen) {
+              //   calculatedProps.editable.onBulkEditOpen();
+              // }
               this.dataManager.changeMultipleRowsEditing();
               this.dataManager.resetMultipleRowsChanges();
-              this.setState({
-                ...this.dataManager.getRenderState(),
-                isLoading: false,
-              });
+              this.setState(this.dataManager.getRenderState());
             } else {
               this.setState({ isLoading: true }, () => {
                 calculatedProps.editable
