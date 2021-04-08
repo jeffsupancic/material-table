@@ -366,7 +366,10 @@ export default class MaterialTable extends React.Component {
                 }
                 this.dataManager.changeMultipleRowsEditing();
                 this.dataManager.resetMultipleRowsChanges();
-                this.setState(this.dataManager.getRenderState());
+                this.setState({
+                  ...this.dataManager.getRenderState(),
+                  isLoading: false,
+                });
               } else {
                 calculatedProps.editable
                   .onMultipleRowsUpdate()
