@@ -351,6 +351,7 @@ export default class MaterialTable extends React.Component {
           position: "toolbarOnSelect",
           hidden: !this.dataManager.isEditMultipleRowsFlow,
           onClick: () => {
+            console.log('this', this);
             // user clicks save
             // run validations on (this.dataManager.multipleRowsEditChanges)
             // if validation function returns true, then it's VALID
@@ -360,16 +361,14 @@ export default class MaterialTable extends React.Component {
             console.log('isFailingValidations', isFailingValidations);
 
             if (isFailingValidations) {
-              this.setState({ isLoading: true }, () => {
-                if (calculatedProps.editable.onBulkEditOpen) {
-                  calculatedProps.editable.onBulkEditOpen();
-                }
-                this.dataManager.changeMultipleRowsEditing();
-                this.dataManager.resetMultipleRowsChanges();
-                this.setState({
-                  ...this.dataManager.getRenderState(),
-                  isLoading: false,
-                });
+              if (calculatedProps.editable.onBulkEditOpen) {
+                calculatedProps.editable.onBulkEditOpen();
+              }
+              this.dataManager.changeMultipleRowsEditing();
+              this.dataManager.resetMultipleRowsChanges();
+              this.setState({
+                ...this.dataManager.getRenderState(),
+                isLoading: false,
               });
             } else {
               this.setState({ isLoading: true }, () => {
