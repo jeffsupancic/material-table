@@ -356,11 +356,11 @@ export default class MaterialTable extends React.Component {
             // if validation function returns true, then it's VALID
             // else it's NOT VALID, cancel everything
 
-            this.setState({ isLoading: true }, () => {
-              let isFailingValidations = calculatedProps.editable.validateMultipleSelectRows(this.dataManager.multipleRowsEditChanges);
-              console.log('isFailingValidations', isFailingValidations);
+            let isFailingValidations = calculatedProps.editable.validateMultipleSelectRows(this.dataManager.multipleRowsEditChanges);
+            console.log('isFailingValidations', isFailingValidations);
 
-              if (isFailingValidations) {
+            if (isFailingValidations) {
+              this.setState({ isLoading: true }, () => {
                 if (calculatedProps.editable.onBulkEditOpen) {
                   calculatedProps.editable.onBulkEditOpen();
                 }
@@ -370,7 +370,9 @@ export default class MaterialTable extends React.Component {
                   ...this.dataManager.getRenderState(),
                   isLoading: false,
                 });
-              } else {
+              });
+            } else {
+              this.setState({ isLoading: true }, () => {
                 calculatedProps.editable
                   .onMultipleRowsUpdate()
                   .then((result) => {
@@ -384,24 +386,8 @@ export default class MaterialTable extends React.Component {
                     });
                     this.dataManager.resetMultipleRowsChanges();
                   });
-              }
-            });
-
-            // this.setState({ isLoading: true }, () => {
-            //   calculatedProps.editable
-            //     .onMultipleRowsUpdate(this.dataManager.multipleRowsEditChanges)
-            //     .then((result) => {
-            //       if (calculatedProps.editable.onBulkEditOpen) {
-            //         calculatedProps.editable.onBulkEditOpen();
-            //       }
-            //       this.dataManager.changeMultipleRowsEditing();
-            //       this.setState({
-            //         ...this.dataManager.getRenderState(),
-            //         isLoading: false,
-            //       });
-            //       this.dataManager.resetMultipleRowsChanges();
-            //     });
-            // });
+              });
+            }
           },
         });
 
