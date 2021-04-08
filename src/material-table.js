@@ -359,8 +359,30 @@ export default class MaterialTable extends React.Component {
             this.setState({ isLoading: true }, () => {
               let isPassingValidations = calculatedProps.editable.validateMultipleSelectRows(this.dataManager.multipleRowsEditChanges);
               console.log('isPassingValidations', isPassingValidations);
-            });
 
+              if (isPassingValidations) {
+                calculatedProps.editable
+                  .onMultipleRowsUpdate()
+                  .then((result) => {
+                    if (calculatedProps.editable.onBulkEditOpen) {
+                      calculatedProps.editable.onBulkEditOpen();
+                    }
+                    this.dataManager.changeMultipleRowsEditing();
+                    this.setState({
+                      ...this.dataManager.getRenderState(),
+                      isLoading: false,
+                    });
+                    this.dataManager.resetMultipleRowsChanges();
+                  });
+              } else {
+                if (calculatedProps.editable.onBulkEditOpen) {
+                  calculatedProps.editable.onBulkEditOpen();
+                }
+                this.dataManager.changeMultipleRowsEditing();
+                this.dataManager.resetMultipleRowsChanges();
+                this.setState(this.dataManager.getRenderState());
+              }
+            });
 
             // this.setState({ isLoading: true }, () => {
             //   calculatedProps.editable
