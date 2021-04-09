@@ -352,13 +352,8 @@ export default class MaterialTable extends React.Component {
           hidden: !this.dataManager.isEditMultipleRowsFlow,
           onClick: () => {
             console.log('this', this);
-            // user clicks save
-            // run validations on (this.dataManager.multipleRowsEditChanges)
-            // if validation function returns true, then it's VALID
-            // else it's NOT VALID, cancel everything
-
-            let isFailingValidations = calculatedProps.editable.validateMultipleSelectRows(this.dataManager.multipleRowsEditChanges);
-            // let isFailingValidations = true;
+            // let isFailingValidations = calculatedProps.editable.validateMultipleSelectRows(this.dataManager.multipleRowsEditChanges);
+            let isFailingValidations = true;
             console.log('isFailingValidations', isFailingValidations);
 
             if (isFailingValidations) {
