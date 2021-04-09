@@ -357,7 +357,7 @@ export default class MaterialTable extends React.Component {
 
             if (validationResult && validationResult.isFailingValidations) {
               console.log('FAILED VALIDATIONS');
-              calculatedProps.editable.validationAlert();
+              calculatedProps.editable.validationAlert(validationResult.validatedRows, validationResult.validatedRowsText);
 
               if (calculatedProps.editable.onBulkEditOpen) {
                 calculatedProps.editable.onBulkEditOpen();
