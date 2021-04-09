@@ -352,11 +352,10 @@ export default class MaterialTable extends React.Component {
           hidden: !this.dataManager.isEditMultipleRowsFlow,
           onClick: () => {
             console.log('this', this);
-            let isFailingValidations = calculatedProps.editable.validateMultipleSelectRows(this.dataManager.multipleRowsEditChanges);
-            // let isFailingValidations = true;
-            console.log('isFailingValidations', isFailingValidations);
+            let validationResult = calculatedProps.editable.validateMultipleSelectRows(this.dataManager.multipleRowsEditChanges);
+            console.log('isFailingValidations', validationResult.isFailingValidations);
 
-            if (isFailingValidations) {
+            if (validationResult && validationResult.isFailingValidations) {
               console.log('FAILED VALIDATIONS');
               if (calculatedProps.editable.onBulkEditOpen) {
                 calculatedProps.editable.onBulkEditOpen();
@@ -368,7 +367,7 @@ export default class MaterialTable extends React.Component {
               console.log('PASSED VALIDATIONS');
               this.setState({ isLoading: true }, () => {
                 calculatedProps.editable
-                  .onMultipleRowsUpdate()
+                  .onMultipleRowsUpdate(validationResult.newData)
                   .then((result) => {
                     if (calculatedProps.editable.onBulkEditOpen) {
                       calculatedProps.editable.onBulkEditOpen();
