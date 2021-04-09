@@ -255,7 +255,7 @@ export class MTableHeader extends React.Component {
         style={{ ...this.props.headerStyle, width: selectionWidth }}
       >
         {this.props.showSelectAllCheckbox && !this.props.isEditMultipleRowsFlow && (
-          <Tooltip title={'Select All'}>
+          <Tooltip title={this.props.selectedCount === this.props.dataCount ? 'Deselect All' : 'Select All'}>
             <Checkbox
               indeterminate={
                 this.props.selectedCount > 0 &&
