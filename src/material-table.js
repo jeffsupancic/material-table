@@ -362,7 +362,7 @@ export default class MaterialTable extends React.Component {
               if (calculatedProps.editable.onBulkEditOpen) {
                 calculatedProps.editable.onBulkEditOpen();
               }
-              this.dataManager.changeMultipleRowsEditing();
+              this.dataManager.changeMultipleRowsEditing('update');
               this.dataManager.resetMultipleRowsChanges();
               // this.setState(this.dataManager.getRenderState());
             } else {
