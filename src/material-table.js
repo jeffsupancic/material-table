@@ -357,7 +357,8 @@ export default class MaterialTable extends React.Component {
             // if validation function returns true, then it's VALID
             // else it's NOT VALID, cancel everything
 
-            let isFailingValidations = calculatedProps.editable.validateMultipleSelectRows(this.dataManager.multipleRowsEditChanges);
+            // let isFailingValidations = calculatedProps.editable.validateMultipleSelectRows(this.dataManager.multipleRowsEditChanges);
+            let isFailingValidations = true;
             console.log('isFailingValidations', isFailingValidations);
 
             if (isFailingValidations) {
@@ -1007,7 +1008,7 @@ export default class MaterialTable extends React.Component {
         onBulkEditRowChanged={this.dataManager.onBulkEditRowChanged}
         onMultipleEditRowsChanged={(field, value) => {
           this.dataManager.onMultipleEditRowsChanged(field, value);
-          // this.setState(this.dataManager.getRenderState());
+          this.setState(this.dataManager.getRenderState());
         }}
         isEditMultipleRowsFlow={this.dataManager.isEditMultipleRowsFlow}
         multipleRowsEditChanges={this.dataManager.multipleRowsEditChanges}
