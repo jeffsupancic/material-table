@@ -427,7 +427,7 @@ export default class MaterialTable extends React.Component {
   };
 
   onChangeGroupOrder = (groupedColumn) => {
-    console.log('onChangeGroupOrder fired', groupedColumn);
+    console.log('onChangeGroupOrder FIRED', groupedColumn);
     this.dataManager.changeGroupOrder(groupedColumn.tableData.id);
     this.setState(this.dataManager.getRenderState());
   };
@@ -499,6 +499,7 @@ export default class MaterialTable extends React.Component {
   };
 
   onDragEnd = (result) => {
+    console.log('onDragEnd FIRED');
     if (!result || !result.source || !result.destination) return;
     this.dataManager.changeByDrag(result);
     this.setState(this.dataManager.getRenderState(), () => {
@@ -516,11 +517,13 @@ export default class MaterialTable extends React.Component {
   };
 
   onGroupExpandChanged = (path) => {
+    console.log('onGroupExpandChanged FIRED');
     this.dataManager.changeGroupExpand(path);
     this.setState(this.dataManager.getRenderState());
   };
 
   onGroupRemoved = (groupedColumn, index) => {
+    console.log('onGroupRemoved FIRED');
     const result = {
       combine: null,
       destination: { droppableId: "headers", index: 0 },
