@@ -330,7 +330,7 @@ export default class MaterialTable extends React.Component {
       if (calculatedProps.editable.onMultipleRowsUpdate) {
         const hasSelectedRows = this.dataManager
           .getRenderState()
-          .data.some((d) => d.tableData.checked);
+          .data.some((d) => d?.tableData?.checked);
         calculatedProps.actions.push({
           icon: calculatedProps.icons.Edit,
           tooltip: localization.updateMultipleRowsTooltip,
