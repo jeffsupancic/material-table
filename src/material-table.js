@@ -427,6 +427,7 @@ export default class MaterialTable extends React.Component {
   };
 
   onChangeGroupOrder = (groupedColumn) => {
+    console.log('onChangeGroupOrder fired', groupedColumn);
     this.dataManager.changeGroupOrder(groupedColumn.tableData.id);
     this.setState(this.dataManager.getRenderState());
   };
