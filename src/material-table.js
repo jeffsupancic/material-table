@@ -536,6 +536,9 @@ export default class MaterialTable extends React.Component {
       type: "DEFAULT",
     };
     this.dataManager.changeByDrag(result);
+    if (this.dataManager.grouped === false) {
+      this.props.editable.onGroupingChange();
+    }
     this.setState(this.dataManager.getRenderState(), () => {
       this.props.onGroupRemoved &&
         this.props.onGroupRemoved(groupedColumn, index);
