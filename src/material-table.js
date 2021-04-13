@@ -501,6 +501,7 @@ export default class MaterialTable extends React.Component {
   onDragEnd = (result) => {
     console.log('onDragEnd FIRED');
     if (!result || !result.source || !result.destination) return;
+    console.log('this', this);
     this.props.onDragEnd();
     this.dataManager.changeByDrag(result);
     this.setState(this.dataManager.getRenderState(), () => {
