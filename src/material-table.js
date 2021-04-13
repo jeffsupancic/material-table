@@ -351,22 +351,23 @@ export default class MaterialTable extends React.Component {
           position: "toolbarOnSelect",
           hidden: !this.dataManager.isEditMultipleRowsFlow,
           onClick: () => {
-            console.log('this', this);
-            let validationResult = calculatedProps.editable.validateMultipleSelectRows(this.dataManager.multipleRowsEditChanges);
-            console.log('isFailingValidations', validationResult.isFailingValidations);
+            let validationResult = calculatedProps.editable.validateMultipleSelectRows(
+              this.dataManager.multipleRowsEditChanges
+            );
 
             if (validationResult && validationResult.isFailingValidations) {
-              console.log('FAILED VALIDATIONS');
-              calculatedProps.editable.validationAlert(validationResult.validatedRows, validationResult.validatedRowsText);
+              calculatedProps.editable.validationAlert(
+                validationResult.validatedRows,
+                validationResult.validatedRowsText
+              );
 
               if (calculatedProps.editable.onBulkEditOpen) {
                 calculatedProps.editable.onBulkEditOpen();
               }
-              this.dataManager.changeMultipleRowsEditing('update');
+              this.dataManager.changeMultipleRowsEditing("update");
               this.dataManager.resetMultipleRowsChanges();
               // this.setState(this.dataManager.getRenderState());
             } else {
-              console.log('PASSED VALIDATIONS');
               this.setState({ isLoading: true }, () => {
                 calculatedProps.editable
                   .onMultipleRowsUpdate(validationResult.newData)
@@ -427,7 +428,6 @@ export default class MaterialTable extends React.Component {
   };
 
   onChangeGroupOrder = (groupedColumn) => {
-    console.log('onChangeGroupOrder FIRED', groupedColumn);
     this.dataManager.changeGroupOrder(groupedColumn.tableData.id);
     this.setState(this.dataManager.getRenderState());
   };
@@ -499,9 +499,7 @@ export default class MaterialTable extends React.Component {
   };
 
   onDragEnd = (result) => {
-    console.log('onDragEnd FIRED');
     if (!result || !result.source || !result.destination) return;
-    console.log('this', this);
     this.props.editable.onGroupingChange();
     this.dataManager.changeByDrag(result);
     this.setState(this.dataManager.getRenderState(), () => {
@@ -519,13 +517,11 @@ export default class MaterialTable extends React.Component {
   };
 
   onGroupExpandChanged = (path) => {
-    console.log('onGroupExpandChanged FIRED');
     this.dataManager.changeGroupExpand(path);
     this.setState(this.dataManager.getRenderState());
   };
 
   onGroupRemoved = (groupedColumn, index) => {
-    console.log('onGroupRemoved FIRED');
     const result = {
       combine: null,
       destination: { droppableId: "headers", index: 0 },
