@@ -771,6 +771,7 @@ export default class MaterialTable extends React.Component {
           operator: "=",
           value: a.tableData.filterValue,
         }));
+        console.log('query', query);
 
       this.onQueryChange(query);
     } else {
