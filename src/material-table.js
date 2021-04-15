@@ -678,6 +678,7 @@ export default class MaterialTable extends React.Component {
     query = { ...this.state.query, ...query, error: this.state.errorState };
     console.log('finalQuery', query);
     this.setState({ isLoading: true, errorState: undefined }, () => {
+      console.log('this', this);
       this.props
         .data(query)
         .then((result) => {
