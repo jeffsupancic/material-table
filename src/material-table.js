@@ -674,11 +674,14 @@ export default class MaterialTable extends React.Component {
     this.onQueryChange(this.state.query);
   };
   onQueryChange = (query, callback) => {
+    
     query = { ...this.state.query, ...query, error: this.state.errorState };
+    console.log('finalQuery', query);
     this.setState({ isLoading: true, errorState: undefined }, () => {
       this.props
         .data(query)
         .then((result) => {
+          console.log('result', result);
           query.totalCount = result.totalCount;
           query.page = result.page;
           this.dataManager.setData(result.data);
@@ -762,6 +765,7 @@ export default class MaterialTable extends React.Component {
 
   onFilterChangeDebounce = debounce(() => {
     if (this.isRemoteData()) {
+      console.log('IS REMOTE DATA');
       const query = { ...this.state.query };
       query.page = 0;
       query.filters = this.state.columns
@@ -771,10 +775,10 @@ export default class MaterialTable extends React.Component {
           operator: "=",
           value: a.tableData.filterValue,
         }));
-        console.log('query', query);
-
+      console.log('query', query);
       this.onQueryChange(query);
     } else {
+      console.log('NOT REMOTE DATA');
       this.setState(this.dataManager.getRenderState(), () => {
         if (this.props.onFilterChange) {
           const appliedFilters = this.state.columns
