@@ -768,6 +768,7 @@ export default class MaterialTable extends React.Component {
       console.log('IS REMOTE DATA');
       const query = { ...this.state.query };
       query.page = 0;
+      console.log('this.state', this.state);
       query.filters = this.state.columns
         .filter((a) => a.tableData.filterValue)
         .map((a) => ({
