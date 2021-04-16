@@ -774,14 +774,14 @@ export default class MaterialTable extends React.Component {
         .filter((a) => a.tableData.filterValue)
         .map((a) => {
           if (a.dataPath.includes('udf')) {
-            let string = a.tableData.filterValue.toString();
+            let string = a.tableData.filterValue;
             console.log('string', string);
             let value = Number(a.tableData.filterValue.toString() + '.0');
             console.log('.map value', value);
             return {
               column: a,
               operator: "=",
-              value: Number(a.tableData.filterValue.toString())
+              value: a.tableData.filterValue,
             }
           } else {
             return {
