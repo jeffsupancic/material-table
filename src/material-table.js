@@ -674,15 +674,11 @@ export default class MaterialTable extends React.Component {
     this.onQueryChange(this.state.query);
   };
   onQueryChange = (query, callback) => {
-    
     query = { ...this.state.query, ...query, error: this.state.errorState };
-    console.log('finalQuery', query);
     this.setState({ isLoading: true, errorState: undefined }, () => {
-      console.log('this', this);
       this.props
         .data(query)
         .then((result) => {
-          console.log('result', result);
           query.totalCount = result.totalCount;
           query.page = result.page;
           this.dataManager.setData(result.data);
@@ -766,35 +762,17 @@ export default class MaterialTable extends React.Component {
 
   onFilterChangeDebounce = debounce(() => {
     if (this.isRemoteData()) {
-      console.log('IS REMOTE DATA');
       const query = { ...this.state.query };
       query.page = 0;
-      console.log('this.state', this.state);
       query.filters = this.state.columns
         .filter((a) => a.tableData.filterValue)
-        .map((a) => {
-          if (a.dataPath.includes('udf')) {
-            let string = a.tableData.filterValue;
-            console.log('string', string);
-            let value = Number(a.tableData.filterValue.toString() + '.0');
-            console.log('.map value', value);
-            return {
-              column: a,
-              operator: "=",
-              value: a.tableData.filterValue,
-            }
-          } else {
-            return {
-              column: a,
-              operator: "=",
-              value: a.tableData.filterValue,
-            }
-          }
-        });
-      console.log('query', query);
+        .map((a) => ({
+          column: a,
+          operator: "=",
+          value: a.tableData.filterValue,
+        }));
       this.onQueryChange(query);
     } else {
-      console.log('NOT REMOTE DATA');
       this.setState(this.dataManager.getRenderState(), () => {
         if (this.props.onFilterChange) {
           const appliedFilters = this.state.columns
