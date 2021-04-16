@@ -772,11 +772,23 @@ export default class MaterialTable extends React.Component {
       console.log('this.state', this.state);
       query.filters = this.state.columns
         .filter((a) => a.tableData.filterValue)
-        .map((a) => ({
-          column: a,
-          operator: "=",
-          value: a.tableData.filterValue,
-        }));
+        .map((a) => {
+          if (a.dataPath.includes('udf')) {
+            let value = Number(a.tableData.filterValue.toString() + '.0');
+            console.log('.map value', value);
+            return {
+              column: a,
+              operator: "=",
+              value: Number(a.tableData.filterValue.toString())
+            }
+          } else {
+            return {
+              column: a,
+              operator: "=",
+              value: a.tableData.filterValue,
+            }
+          }
+        });
       console.log('query', query);
       this.onQueryChange(query);
     } else {
