@@ -175,6 +175,7 @@ export class MTableToolbar extends React.Component {
       ...this.props.localization,
     };
     const { classes } = this.props;
+    console.log('classes', classes);
 
     return (
       <div>

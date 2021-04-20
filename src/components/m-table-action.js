@@ -39,7 +39,7 @@ class MTableAction extends React.Component {
 
     const icon =
       typeof action.icon === "string" ? (
-        <Icon {...action.iconProps}>{action.icon}</Icon>
+        <Icon {...action.iconProps} style={{ color: 'green' }}>{action.icon}</Icon>
       ) : typeof action.icon === "function" ? (
         action.icon({ ...action.iconProps, disabled: disabled })
       ) : (
