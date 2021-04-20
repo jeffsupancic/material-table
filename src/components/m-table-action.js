@@ -52,6 +52,7 @@ class MTableAction extends React.Component {
         color="inherit"
         disabled={disabled}
         onClick={handleOnClick}
+        disableHoverListener
       >
         {icon}
       </IconButton>
@@ -65,7 +66,7 @@ class MTableAction extends React.Component {
           <span>{button}</span>
         </Tooltip>
       ) : (
-        <Tooltip title={action.tooltip} disableHoverListener>{button}</Tooltip>
+        <Tooltip title={action.tooltip}>{button}</Tooltip>
       );
     } else {
       return button;
