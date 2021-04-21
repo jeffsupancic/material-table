@@ -300,7 +300,7 @@ export default class MaterialTable extends React.Component {
         }
         calculatedProps.actions.push({
           // icon: calculatedProps.icons.Edit,
-          icon: <Edit style={forceEditAllStyle} />,
+          icon: React.forwardRef((props, ref) => { <Edit {...props} ref={ref} style={forceEditAllStyle} /> }),
           tooltip: localization.bulkEditTooltip,
           position: "toolbar",
           hidden: this.dataManager.bulkEditOpen,
