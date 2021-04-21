@@ -288,19 +288,8 @@ export default class MaterialTable extends React.Component {
         }));
       }
       if (calculatedProps.editable.onBulkUpdate) {
-        const forceEditAllStyle = {
-          border: `1px solid #003b5c`,
-          backgroundColor: '#003b5c',
-          color: '#FFFFFF',
-          '&:hover': {
-            border: `1px solid #003b5c`,
-            backgroundColor: '#FFFFFF',
-            color: '#003b5c',
-          },
-        }
         calculatedProps.actions.push({
-          // icon: calculatedProps.icons.Edit,
-          icon: React.forwardRef((props, ref) => { <Edit {...props} ref={ref} style={forceEditAllStyle} /> }),
+          icon: calculatedProps.icons.Edit,
           tooltip: localization.bulkEditTooltip,
           position: "toolbar",
           hidden: this.dataManager.bulkEditOpen,
