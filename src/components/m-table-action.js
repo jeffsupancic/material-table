@@ -8,6 +8,8 @@ import Tooltip from "@material-ui/core/Tooltip";
 
 class MTableAction extends React.Component {
   render() {
+    console.log("ARE WE EVEN IN THIS THING")
+
     let action = this.props.action;
 
     if (typeof action === "function") {
