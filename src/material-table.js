@@ -328,82 +328,82 @@ export default class MaterialTable extends React.Component {
       //     },
       //   });
       // }
-    //   if (calculatedProps.editable.onMultipleRowsUpdate) {
-    //     const hasSelectedRows = this.dataManager
-    //       .getRenderState()
-    //       .data.some((d) => d?.tableData?.checked);
-    //     calculatedProps.actions.push({
-    //       icon: calculatedProps.icons.Edit,
-    //       tooltip: localization.updateMultipleRowsTooltip,
-    //       position: "toolbarOnSelect",
-    //       hidden: !hasSelectedRows || this.dataManager.isEditMultipleRowsFlow,
-    //       onClick: () => {
-    //         if (calculatedProps.editable.onBulkEditOpen) {
-    //           calculatedProps.editable.onBulkEditOpen();
-    //         }
-    //         this.dataManager.changeMultipleRowsEditing("update");
-    //         // this.setState(this.dataManager.getRenderState());
-    //       },
-    //     });
+      // if (calculatedProps.editable.onMultipleRowsUpdate) {
+      //   const hasSelectedRows = this.dataManager
+      //     .getRenderState()
+      //     .data.some((d) => d?.tableData?.checked);
+      //   calculatedProps.actions.push({
+      //     icon: calculatedProps.icons.Edit,
+      //     tooltip: localization.updateMultipleRowsTooltip,
+      //     position: "toolbarOnSelect",
+      //     hidden: !hasSelectedRows || this.dataManager.isEditMultipleRowsFlow,
+      //     onClick: () => {
+      //       if (calculatedProps.editable.onBulkEditOpen) {
+      //         calculatedProps.editable.onBulkEditOpen();
+      //       }
+      //       this.dataManager.changeMultipleRowsEditing("update");
+      //       // this.setState(this.dataManager.getRenderState());
+      //     },
+      //   });
 
-    //     calculatedProps.actions.push({
-    //       icon: calculatedProps.icons.Check,
-    //       tooltip: localization.saveMultipleRowsEditingTooltip,
-    //       position: "toolbarOnSelect",
-    //       hidden: !this.dataManager.isEditMultipleRowsFlow,
-    //       onClick: () => {
-    //         let validationResult = calculatedProps.editable.validateMultipleSelectRows(
-    //           this.dataManager.multipleRowsEditChanges
-    //         );
+      //   calculatedProps.actions.push({
+      //     icon: calculatedProps.icons.Check,
+      //     tooltip: localization.saveMultipleRowsEditingTooltip,
+      //     position: "toolbarOnSelect",
+      //     hidden: !this.dataManager.isEditMultipleRowsFlow,
+      //     onClick: () => {
+      //       let validationResult = calculatedProps.editable.validateMultipleSelectRows(
+      //         this.dataManager.multipleRowsEditChanges
+      //       );
 
-    //         if (validationResult && validationResult.isFailingValidations) {
-    //           calculatedProps.editable.validationAlert(
-    //             validationResult.validatedRows,
-    //             validationResult.validatedRowsText
-    //           );
+      //       if (validationResult && validationResult.isFailingValidations) {
+      //         calculatedProps.editable.validationAlert(
+      //           validationResult.validatedRows,
+      //           validationResult.validatedRowsText
+      //         );
 
-    //           if (calculatedProps.editable.onBulkEditOpen) {
-    //             calculatedProps.editable.onBulkEditOpen();
-    //           }
-    //           this.dataManager.changeMultipleRowsEditing("update");
-    //           this.dataManager.resetMultipleRowsChanges();
-    //           // this.setState(this.dataManager.getRenderState());
-    //         } else {
-    //           this.setState({ isLoading: true }, () => {
-    //             calculatedProps.editable
-    //               .onMultipleRowsUpdate(validationResult.newData)
-    //               .then((result) => {
-    //                 if (calculatedProps.editable.onBulkEditOpen) {
-    //                   calculatedProps.editable.onBulkEditOpen();
-    //                 }
-    //                 this.dataManager.changeMultipleRowsEditing();
-    //                 this.setState({
-    //                   ...this.dataManager.getRenderState(),
-    //                   isLoading: false,
-    //                 });
-    //                 this.dataManager.resetMultipleRowsChanges();
-    //               });
-    //           });
-    //         }
-    //       },
-    //     });
+      //         if (calculatedProps.editable.onBulkEditOpen) {
+      //           calculatedProps.editable.onBulkEditOpen();
+      //         }
+      //         this.dataManager.changeMultipleRowsEditing("update");
+      //         this.dataManager.resetMultipleRowsChanges();
+      //         // this.setState(this.dataManager.getRenderState());
+      //       } else {
+      //         this.setState({ isLoading: true }, () => {
+      //           calculatedProps.editable
+      //             .onMultipleRowsUpdate(validationResult.newData)
+      //             .then((result) => {
+      //               if (calculatedProps.editable.onBulkEditOpen) {
+      //                 calculatedProps.editable.onBulkEditOpen();
+      //               }
+      //               this.dataManager.changeMultipleRowsEditing();
+      //               this.setState({
+      //                 ...this.dataManager.getRenderState(),
+      //                 isLoading: false,
+      //               });
+      //               this.dataManager.resetMultipleRowsChanges();
+      //             });
+      //         });
+      //       }
+      //     },
+      //   });
 
-    //     calculatedProps.actions.push({
-    //       icon: calculatedProps.icons.Clear,
-    //       tooltip: localization.cancelMultipleRowsEditingTooltip,
-    //       position: "toolbarOnSelect",
-    //       hidden: !this.dataManager.isEditMultipleRowsFlow,
-    //       onClick: () => {
-    //         if (calculatedProps.editable.onBulkEditOpen) {
-    //           calculatedProps.editable.onBulkEditOpen();
-    //         }
-    //         this.dataManager.changeMultipleRowsEditing();
-    //         this.dataManager.resetMultipleRowsChanges();
-    //         this.setState(this.dataManager.getRenderState());
-    //       },
-    //     });
-    //   }
-    // }
+      //   calculatedProps.actions.push({
+      //     icon: calculatedProps.icons.Clear,
+      //     tooltip: localization.cancelMultipleRowsEditingTooltip,
+      //     position: "toolbarOnSelect",
+      //     hidden: !this.dataManager.isEditMultipleRowsFlow,
+      //     onClick: () => {
+      //       if (calculatedProps.editable.onBulkEditOpen) {
+      //         calculatedProps.editable.onBulkEditOpen();
+      //       }
+      //       this.dataManager.changeMultipleRowsEditing();
+      //       this.dataManager.resetMultipleRowsChanges();
+      //       this.setState(this.dataManager.getRenderState());
+      //     },
+      //   });
+      // }
+    }
 
     return calculatedProps;
   }
