@@ -287,47 +287,47 @@ export default class MaterialTable extends React.Component {
           },
         }));
       }
-      if (calculatedProps.editable.onBulkUpdate) {
-        // calculatedProps.actions.push({
-        //   icon: calculatedProps.icons.Edit,
-        //   tooltip: localization.bulkEditTooltip,
-        //   position: "toolbar",
-        //   hidden: this.dataManager.bulkEditOpen,
-        //   onClick: () => {
-        //     if (calculatedProps.editable.onBulkEditOpen) {
-        //       calculatedProps.editable.onBulkEditOpen();
-        //     }
-        //     this.dataManager.changeBulkEditOpen(true);
-        //     this.setState(this.dataManager.getRenderState());
-        //   },
-        // });
-        calculatedProps.actions.push({
-          icon: calculatedProps.icons.Check,
-          tooltip: localization.bulkEditApprove,
-          position: "toolbar",
-          hidden: !this.dataManager.bulkEditOpen,
-          onClick: () => {
-            if (calculatedProps.editable.onBulkEditOpen) {
-              calculatedProps.editable.onBulkEditOpen();
-            }
-            this.onEditingApproved("bulk");
-          },
-        });
-        calculatedProps.actions.push({
-          icon: calculatedProps.icons.Clear,
-          tooltip: localization.bulkEditCancel,
-          position: "toolbar",
-          hidden: !this.dataManager.bulkEditOpen,
-          onClick: () => {
-            if (calculatedProps.editable.onBulkEditOpen) {
-              calculatedProps.editable.onBulkEditOpen();
-            }
-            this.dataManager.changeBulkEditOpen(false);
-            this.dataManager.clearBulkEditChangedRows();
-            this.setState(this.dataManager.getRenderState());
-          },
-        });
-      }
+      // if (calculatedProps.editable.onBulkUpdate) {
+      //   calculatedProps.actions.push({
+      //     icon: calculatedProps.icons.Edit,
+      //     tooltip: localization.bulkEditTooltip,
+      //     position: "toolbar",
+      //     hidden: this.dataManager.bulkEditOpen,
+      //     onClick: () => {
+      //       if (calculatedProps.editable.onBulkEditOpen) {
+      //         calculatedProps.editable.onBulkEditOpen();
+      //       }
+      //       this.dataManager.changeBulkEditOpen(true);
+      //       this.setState(this.dataManager.getRenderState());
+      //     },
+      //   });
+      //   calculatedProps.actions.push({
+      //     icon: calculatedProps.icons.Check,
+      //     tooltip: localization.bulkEditApprove,
+      //     position: "toolbar",
+      //     hidden: !this.dataManager.bulkEditOpen,
+      //     onClick: () => {
+      //       if (calculatedProps.editable.onBulkEditOpen) {
+      //         calculatedProps.editable.onBulkEditOpen();
+      //       }
+      //       this.onEditingApproved("bulk");
+      //     },
+      //   });
+      //   calculatedProps.actions.push({
+      //     icon: calculatedProps.icons.Clear,
+      //     tooltip: localization.bulkEditCancel,
+      //     position: "toolbar",
+      //     hidden: !this.dataManager.bulkEditOpen,
+      //     onClick: () => {
+      //       if (calculatedProps.editable.onBulkEditOpen) {
+      //         calculatedProps.editable.onBulkEditOpen();
+      //       }
+      //       this.dataManager.changeBulkEditOpen(false);
+      //       this.dataManager.clearBulkEditChangedRows();
+      //       this.setState(this.dataManager.getRenderState());
+      //     },
+      //   });
+      // }
       if (calculatedProps.editable.onMultipleRowsUpdate) {
         const hasSelectedRows = this.dataManager
           .getRenderState()
