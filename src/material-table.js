@@ -12,6 +12,7 @@ import { debounce } from "debounce";
 import equal from "fast-deep-equal";
 import { withStyles } from "@material-ui/core";
 import * as CommonValues from "./utils/common-values";
+import Edit from '@material-ui/icons/Edit';
 
 /* eslint-enable no-unused-vars */
 
@@ -287,8 +288,19 @@ export default class MaterialTable extends React.Component {
         }));
       }
       if (calculatedProps.editable.onBulkUpdate) {
+        const forceEditAllStyle = {
+          border: `1px solid #003b5c`,
+          backgroundColor: '#003b5c',
+          color: '#FFFFFF',
+          '&:hover': {
+            border: `1px solid #003b5c`,
+            backgroundColor: '#FFFFFF',
+            color: '#003b5c',
+          },
+        }
         calculatedProps.actions.push({
-          icon: calculatedProps.icons.Edit,
+          // icon: calculatedProps.icons.Edit,
+          icon: <Edit style={forceEditAllStyle} />,
           tooltip: localization.bulkEditTooltip,
           position: "toolbar",
           hidden: this.dataManager.bulkEditOpen,
