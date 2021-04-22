@@ -189,6 +189,7 @@ export class MTableToolbar extends React.Component {
                   })
                 }
                 aria-label={localization.showColumnsAriaLabel}
+                disableRipple
               >
                 <this.props.icons.ViewColumn />
               </IconButton>
