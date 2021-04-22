@@ -180,7 +180,7 @@ export class MTableToolbar extends React.Component {
       <div>
         {this.props.columnsButton && (
           <span>
-            <Tooltip title={localization.showColumnsTitle} disableRipple disableHoverListener>
+            <Tooltip title={localization.showColumnsTitle}>
               <IconButton
                 color="inherit"
                 onClick={(event) =>
@@ -189,7 +189,7 @@ export class MTableToolbar extends React.Component {
                   })
                 }
                 aria-label={localization.showColumnsAriaLabel}
-                disableRipple
+                style={{backgroundColor:'transparent'}}
               >
                 <this.props.icons.ViewColumn />
               </IconButton>
