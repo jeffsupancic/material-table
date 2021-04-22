@@ -189,7 +189,11 @@ export class MTableToolbar extends React.Component {
                   })
                 }
                 aria-label={localization.showColumnsAriaLabel}
-                style={{backgroundColor:'transparent'}}
+                style={{
+                  backgroundColor: 'transparent',
+                  height: 20,
+                  width: 20,
+                }}
               >
                 <this.props.icons.ViewColumn />
               </IconButton>
