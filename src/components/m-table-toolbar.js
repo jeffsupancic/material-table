@@ -180,7 +180,7 @@ export class MTableToolbar extends React.Component {
       <div>
         {this.props.columnsButton && (
           <span>
-            <Tooltip title={localization.showColumnsTitle}>
+            <Tooltip title={localization.showColumnsTitle} disableRipple disableHoverListener>
               <IconButton
                 color="inherit"
                 onClick={(event) =>
