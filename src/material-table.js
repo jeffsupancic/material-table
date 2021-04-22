@@ -421,6 +421,7 @@ export default class MaterialTable extends React.Component {
   };
 
   onChangeColumnHidden = (column, hidden) => {
+    console.log('this', this);
     this.dataManager.changeColumnHidden(column, hidden);
     this.setState(this.dataManager.getRenderState(), () => {
       this.props.onChangeColumnHidden &&
